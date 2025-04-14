@@ -40,7 +40,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// Wrapper to automatically check authentication state and route accordingly
 class AuthWrapper extends StatelessWidget {
   const AuthWrapper({super.key});
 
@@ -49,14 +48,12 @@ class AuthWrapper extends StatelessWidget {
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
-        // If Firebase is still initializing or checking auth state
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Scaffold(
             body: Center(child: CircularProgressIndicator()),
           );
         }
 
-        // Check if user is logged in
         if (snapshot.hasData && snapshot.data != null) {
           // User is signed in, navigate to home
           return const HomeScreen();
