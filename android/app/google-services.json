@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1023540559048",
+    "project_id": "chichrental-364ce",
+    "storage_bucket": "chichrental-364ce.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1023540559048:android:56db9648dbe283f43df9fd",
+        "android_client_info": {
+          "package_name": "com.example.chichrental"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmu3DOemSA3Dxz0Us-vIvFJ0pKUTyst9I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
