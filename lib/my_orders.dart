@@ -75,7 +75,6 @@ class _MyOrdersPageState extends State<MyOrdersPage> {
     try {
       final User? user = _auth.currentUser;
       if (user != null) {
-        // Show confirmation dialog first
         bool confirm =
             await showDialog(
               context: context,
@@ -110,7 +109,6 @@ class _MyOrdersPageState extends State<MyOrdersPage> {
               .doc(orderId)
               .delete();
 
-          // Update the order count in the user profile
           await _firestore.collection('users').doc(user.uid).update({
             'orderCount': FieldValue.increment(-1),
           });
@@ -122,7 +120,6 @@ class _MyOrdersPageState extends State<MyOrdersPage> {
             ),
           );
 
-          // Refresh the orders list
           _loadOrders();
         }
       }

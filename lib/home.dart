@@ -74,7 +74,6 @@ class BuildBody extends StatefulWidget {
 }
 
 class _BuildBodyState extends State<BuildBody> {
-  // Define product data for each category
   final Map<String, List<Map<String, dynamic>>> categoryProducts = {
     'couple_dress': [
       {
@@ -180,7 +179,6 @@ class _BuildBodyState extends State<BuildBody> {
     ],
   };
 
-  // Function to handle rent button press
   Future<void> _handleRentNow(
     Map<String, dynamic> product,
     String category,
@@ -198,7 +196,6 @@ class _BuildBodyState extends State<BuildBody> {
     }
 
     try {
-      // Show confirmation dialog
       bool confirm =
           await showDialog(
             context: context,
@@ -227,7 +224,6 @@ class _BuildBodyState extends State<BuildBody> {
 
       if (!confirm) return;
 
-      // Save to Firestore
       final orderData = {
         'title': product['title'],
         'price': product['price'],
@@ -236,14 +232,12 @@ class _BuildBodyState extends State<BuildBody> {
         'orderedAt': Timestamp.now(),
       };
 
-      // Add to user's orders collection
       await FirebaseFirestore.instance
           .collection('users')
           .doc(user.uid)
           .collection('orders')
           .add(orderData);
 
-      // Update order count in user profile
       await FirebaseFirestore.instance.collection('users').doc(user.uid).update(
         {'orderCount': FieldValue.increment(1)},
       );
@@ -273,7 +267,6 @@ class _BuildBodyState extends State<BuildBody> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          // Header with gradient background and welcome message
           FutureBuilder<DocumentSnapshot>(
             future: _getUserDocument(),
             builder: (context, snapshot) {
@@ -292,7 +285,6 @@ class _BuildBodyState extends State<BuildBody> {
             },
           ),
 
-          // Categories section
           Padding(
             padding: const EdgeInsets.only(
               left: 20,
@@ -318,7 +310,6 @@ class _BuildBodyState extends State<BuildBody> {
             ),
           ),
 
-          // Categories horizontal list
           SizedBox(
             height: 110,
             child: ListView(
@@ -361,7 +352,6 @@ class _BuildBodyState extends State<BuildBody> {
 
           const SizedBox(height: 10),
 
-          // Product sections
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             width: double.infinity,
@@ -461,12 +451,11 @@ class _BuildBodyState extends State<BuildBody> {
               const Spacer(),
               GestureDetector(
                 onTap: () {
-                  // Navigate to profile when clicking avatar
                   final homeState =
                       context.findAncestorStateOfType<_HomeScreenState>();
                   if (homeState != null) {
                     homeState.setState(() {
-                      homeState._selectedIndex = 2; // Profile index
+                      homeState._selectedIndex = 2;
                     });
                   }
                 },
@@ -520,12 +509,11 @@ class _BuildBodyState extends State<BuildBody> {
                 ),
               ),
               onTap: () {
-                // Navigate to search when tapping on search bar
                 final homeState =
                     context.findAncestorStateOfType<_HomeScreenState>();
                 if (homeState != null) {
                   homeState.setState(() {
-                    homeState._selectedIndex = 1; // Search index
+                    homeState._selectedIndex = 1;
                   });
                 }
               },
@@ -567,7 +555,6 @@ class _BuildBodyState extends State<BuildBody> {
     );
   }
 
-  // Helper function to get current user document
   static Future<DocumentSnapshot> _getUserDocument() async {
     final User? user = FirebaseAuth.instance.currentUser;
 
@@ -578,7 +565,6 @@ class _BuildBodyState extends State<BuildBody> {
           .get();
     }
 
-    // Return a placeholder if no user is logged in
     return Future.value(null);
   }
 }

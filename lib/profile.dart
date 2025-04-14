@@ -14,7 +14,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  
+
   bool _isLoading = true;
   Map<String, dynamic> _userData = {};
   String _errorMessage = '';
@@ -33,13 +33,10 @@ class _ProfilePageState extends State<ProfilePage> {
 
     try {
       User? currentUser = _auth.currentUser;
-      
+
       if (currentUser != null) {
-        // Get user data from Firestore
-        DocumentSnapshot userDoc = await _firestore
-            .collection('users')
-            .doc(currentUser.uid)
-            .get();
+        DocumentSnapshot userDoc =
+            await _firestore.collection('users').doc(currentUser.uid).get();
 
         if (userDoc.exists) {
           setState(() {
@@ -47,7 +44,6 @@ class _ProfilePageState extends State<ProfilePage> {
             _isLoading = false;
           });
         } else {
-          // Create a basic profile if it doesn't exist
           await _firestore.collection('users').doc(currentUser.uid).set({
             'email': currentUser.email,
             'name': currentUser.displayName ?? 'User',
@@ -55,11 +51,8 @@ class _ProfilePageState extends State<ProfilePage> {
             'completedOrders': 0,
           });
 
-          // Fetch the newly created profile
-          DocumentSnapshot newUserDoc = await _firestore
-              .collection('users')
-              .doc(currentUser.uid)
-              .get();
+          DocumentSnapshot newUserDoc =
+              await _firestore.collection('users').doc(currentUser.uid).get();
 
           setState(() {
             _userData = newUserDoc.data() as Map<String, dynamic>;
@@ -71,8 +64,7 @@ class _ProfilePageState extends State<ProfilePage> {
           _errorMessage = 'User not authenticated';
           _isLoading = false;
         });
-        
-        // Navigate back to login
+
         Navigator.pushReplacementNamed(context, '/login');
       }
     } catch (e) {
@@ -85,39 +77,39 @@ class _ProfilePageState extends State<ProfilePage> {
 
   String _formatDate(dynamic timestamp) {
     if (timestamp == null) return 'Recently';
-    
+
     if (timestamp is Timestamp) {
       return DateFormat('MMMM yyyy').format(timestamp.toDate());
     }
-    
+
     return 'Recently';
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _isLoading 
-          ? const Center(child: CircularProgressIndicator())
-          : _errorMessage.isNotEmpty 
-              ? Center(child: Text(_errorMessage, style: TextStyle(color: Colors.red)))
+      body:
+          _isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : _errorMessage.isNotEmpty
+              ? Center(
+                child: Text(_errorMessage, style: TextStyle(color: Colors.red)),
+              )
               : SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      // Profile header with user info
-                      _buildProfileHeader(),
+                child: Column(
+                  children: [
+                    _buildProfileHeader(),
 
-                      const SizedBox(height: 20),
+                    const SizedBox(height: 20),
 
-                      // Stats row
-                      _buildStatsRow(),
+                    _buildStatsRow(),
 
-                      const SizedBox(height: 20),
+                    const SizedBox(height: 20),
 
-                      // Account settings sections
-                      _buildSettingsSection(context),
-                    ],
-                  ),
+                    _buildSettingsSection(context),
+                  ],
                 ),
+              ),
     );
   }
 
@@ -172,9 +164,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           const SizedBox(height: 16),
           ElevatedButton.icon(
-            onPressed: () {
-              // Handle edit profile action
-            },
+            onPressed: () {},
             icon: const Icon(Icons.edit, size: 16),
             label: const Text("Edit Profile"),
             style: ElevatedButton.styleFrom(
@@ -198,7 +188,10 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           _buildStatItem("Member Since", _formatDate(_userData["joinDate"])),
           _buildVerticalDivider(),
-          _buildStatItem("Orders Completed", "${_userData["completedOrders"] ?? 0}"),
+          _buildStatItem(
+            "Orders Completed",
+            "${_userData["completedOrders"] ?? 0}",
+          ),
         ],
       ),
     );
@@ -242,18 +235,14 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
 
-        // Personal Information
         _buildSettingItem(
           context,
           icon: Icons.person_outline,
           title: "Personal Information",
           subtitle: "Manage your personal details",
-          onTap: () {
-            // Handle tap action
-          },
+          onTap: () {},
         ),
 
-        // My Orders
         _buildSettingItem(
           context,
           icon: Icons.shopping_bag_outlined,
@@ -267,7 +256,6 @@ class _ProfilePageState extends State<ProfilePage> {
           },
         ),
 
-        // Log out
         _buildSettingItem(
           context,
           icon: Icons.logout,
@@ -284,7 +272,6 @@ class _ProfilePageState extends State<ProfilePage> {
 
         const SizedBox(height: 32),
 
-        // Version number
         Center(
           child: Text(
             "Version 1.0.0",
@@ -327,4 +314,3 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 }
-

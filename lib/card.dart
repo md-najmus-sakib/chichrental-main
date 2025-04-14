@@ -29,7 +29,6 @@ class ItemCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Image with fixed height
             ClipRRect(
               borderRadius: const BorderRadius.vertical(
                 top: Radius.circular(12),
@@ -308,7 +307,6 @@ class ItemCard extends StatelessWidget {
                                 return;
                               }
 
-                              // Close form and proceed with rent action
                               Navigator.pop(context);
                               onRentPressed();
                             },

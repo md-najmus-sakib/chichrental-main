@@ -41,28 +41,28 @@ class _RegisterPageState extends State<RegisterPage> {
       });
 
       try {
-        // Create user in Firebase Authentication
-        final UserCredential userCredential = 
-            await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _emailController.text.trim(),
-          password: _passwordController.text.trim(),
-        );
-        
-        // Store additional user data in Firestore
-        await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({
-          'name': _nameController.text.trim(),
-          'email': _emailController.text.trim(),
-          'phone': _phoneController.text.trim(),
-          'joinDate': FieldValue.serverTimestamp(),
-          'completedOrders': 0,
-        });
+        final UserCredential userCredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+              email: _emailController.text.trim(),
+              password: _passwordController.text.trim(),
+            );
+
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(userCredential.user!.uid)
+            .set({
+              'name': _nameController.text.trim(),
+              'email': _emailController.text.trim(),
+              'phone': _phoneController.text.trim(),
+              'joinDate': FieldValue.serverTimestamp(),
+              'completedOrders': 0,
+            });
 
         if (mounted) {
           setState(() {
             _isLoading = false;
           });
 
-          // Show success message
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text("Registration successful! Please login."),
@@ -70,7 +70,7 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           );
 
-          Navigator.pop(context); // Go back to login page
+          Navigator.pop(context);
         }
       } on FirebaseAuthException catch (e) {
         setState(() {
@@ -123,7 +123,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   const SizedBox(height: 24),
 
-                  // Show error message if any
                   if (_errorMessage.isNotEmpty)
                     Container(
                       padding: const EdgeInsets.all(12),
@@ -139,7 +138,6 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
 
-                  // Full Name field
                   TextFormField(
                     controller: _nameController,
                     keyboardType: TextInputType.name,
@@ -172,7 +170,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   const SizedBox(height: 16),
 
-                  // Email field
                   TextFormField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
@@ -209,7 +206,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   const SizedBox(height: 16),
 
-                  // Phone field
                   TextFormField(
                     controller: _phoneController,
                     keyboardType: TextInputType.phone,
@@ -241,7 +237,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   const SizedBox(height: 16),
 
-                  // Password field
                   TextFormField(
                     controller: _passwordController,
                     obscureText: _obscurePassword,
@@ -288,7 +283,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   const SizedBox(height: 16),
 
-                  // Confirm Password field
                   TextFormField(
                     controller: _confirmPasswordController,
                     obscureText: _obscureConfirmPassword,
@@ -335,7 +329,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   const SizedBox(height: 20),
 
-                  // Terms and conditions checkbox
                   Row(
                     children: [
                       Checkbox(
@@ -358,7 +351,6 @@ class _RegisterPageState extends State<RegisterPage> {
 
                   const SizedBox(height: 24),
 
-                  // Register button
                   SizedBox(
                     height: 55,
                     child: ElevatedButton(
@@ -390,7 +382,6 @@ class _RegisterPageState extends State<RegisterPage> {
 
                   const SizedBox(height: 24),
 
-                  // Login link
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -421,4 +412,3 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 }
-

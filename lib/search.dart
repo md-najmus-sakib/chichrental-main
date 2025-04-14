@@ -19,7 +19,6 @@ class _SearchPageState extends State<SearchPage> {
     "Haldi dress",
   ];
 
-  // Filter values
   RangeValues _priceRange = const RangeValues(500, 10000);
   String _selectedCategory = "All";
   final List<String> _categories = [
@@ -31,7 +30,6 @@ class _SearchPageState extends State<SearchPage> {
     "Haldi",
   ];
 
-  // Mock search results (in a real app, this would come from an API or database)
   final List<Map<String, dynamic>> _allDresses = [
     {
       "id": "1",
@@ -87,22 +85,18 @@ class _SearchPageState extends State<SearchPage> {
       return;
     }
 
-    // Filter based on search query and current filters
     setState(() {
       _isSearching = true;
       _searchResults =
           _allDresses.where((dress) {
-            // Apply text search
             final titleMatch = dress["title"].toLowerCase().contains(
               query.toLowerCase(),
             );
 
-            // Apply category filter
             final categoryMatch =
                 _selectedCategory == "All" ||
                 dress["category"] == _selectedCategory;
 
-            // Apply price filter
             final priceMatch =
                 dress["price"] >= _priceRange.start &&
                 dress["price"] <= _priceRange.end;
@@ -110,7 +104,6 @@ class _SearchPageState extends State<SearchPage> {
             return titleMatch && categoryMatch && priceMatch;
           }).toList();
 
-      // Add to recent searches if not already there
       if (!_recentSearches.contains(query) && query.isNotEmpty) {
         _recentSearches.insert(0, query);
         if (_recentSearches.length > 5) {
@@ -165,7 +158,6 @@ class _SearchPageState extends State<SearchPage> {
       ),
       body: Column(
         children: [
-          // Filter options
           if (_showFilterOptions)
             AnimatedContainer(
               duration: const Duration(milliseconds: 300),
@@ -180,7 +172,6 @@ class _SearchPageState extends State<SearchPage> {
                   ),
                   const SizedBox(height: 12),
 
-                  // Price Range Slider
                   Row(
                     children: [
                       const Text("Price Range: "),
@@ -212,7 +203,6 @@ class _SearchPageState extends State<SearchPage> {
                     },
                   ),
 
-                  // Category Filter
                   const Text("Category:"),
                   const SizedBox(height: 8),
                   Wrap(
@@ -259,7 +249,6 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ),
 
-          // Search results or recent searches
           Expanded(
             child:
                 _isSearching ? _buildSearchResults() : _buildRecentSearches(),
@@ -310,9 +299,7 @@ class _SearchPageState extends State<SearchPage> {
           imagePath: dress["imagePath"],
           title: dress["title"],
           price: dress["price"],
-          onRentPressed: () {
-            // Handle rent action
-          },
+          onRentPressed: () {},
         );
       },
     );

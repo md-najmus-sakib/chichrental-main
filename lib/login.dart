@@ -33,7 +33,6 @@ class _LoginPageState extends State<LoginPage> {
       });
 
       try {
-        // Sign in with Firebase Authentication
         await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
@@ -66,7 +65,6 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  // Reset password function
   void _resetPassword() async {
     if (_emailController.text.isEmpty) {
       setState(() {
@@ -106,14 +104,12 @@ class _LoginPageState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const SizedBox(height: 40),
-                  // App logo or icon
                   Icon(
                     Icons.shopping_bag,
                     size: 80,
                     color: Colors.blue.shade700,
                   ),
                   const SizedBox(height: 24),
-                  // Welcome text
                   const Text(
                     "Welcome Back!",
                     style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
@@ -127,7 +123,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 40),
 
-                  // Show error message if any
                   if (_errorMessage.isNotEmpty)
                     Container(
                       padding: const EdgeInsets.all(12),
@@ -143,7 +138,6 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
 
-                  // Email field
                   TextFormField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
@@ -180,7 +174,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 20),
 
-                  // Password field
                   TextFormField(
                     controller: _passwordController,
                     obscureText: _obscurePassword,
@@ -239,7 +232,6 @@ class _LoginPageState extends State<LoginPage> {
 
                   const SizedBox(height: 24),
 
-                  // Login button
                   SizedBox(
                     height: 55,
                     child: ElevatedButton(
@@ -271,7 +263,6 @@ class _LoginPageState extends State<LoginPage> {
 
                   const SizedBox(height: 24),
 
-                  // Register link
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
