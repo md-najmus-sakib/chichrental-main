@@ -1,4 +1,4 @@
-# chichrental
+## Chichrental
 It's a E-commerce based dress rental mobile application.
 
 ## Screenshots of our project.
@@ -10,7 +10,7 @@ It's a E-commerce based dress rental mobile application.
 ![photo_2025-04-15_09-04-25](https://github.com/user-attachments/assets/7cf837bb-fbcd-4ced-ad9f-d61fe017b121)
 ![photo_2025-04-15_09-04-31](https://github.com/user-attachments/assets/3c01a074-6854-4680-b0f7-7c6ac27fc5f8)
 
-##Demo Video of our project
+## Demo Video of our project
 Viveo Drive Link: https://drive.google.com/file/d/1k8qIKss-ME6bVSF7Zyst7-_rMl_Pa3CJ/view?usp=drive_link
 OR,
 
@@ -19,7 +19,7 @@ https://github.com/user-attachments/assets/4da57fb4-6506-425b-9fdb-b9012ce783b9
 
 
 
-##Project Report.
+## Project Report.
 Drive Link: https://drive.google.com/file/d/1JbnCFqOqwqXKU2BEIAjQhvUTQ1rUxP-K/view?usp=drive_link
 [ChicRental Project Report.pdf](https://github.com/user-attachments/files/19746709/ChicRental.Project.Report.pdf)
 
