@@ -1,5 +1,7 @@
 ## Chichrental
-It's a E-commerce based dress rental mobile application.
+It's a E-commerce based dress rental mobile application. "ChicRental" suggests a platform where people can rent  
+stylish and fashionable dresses for their special occasions or events.
+
 
 ## Screenshots of our project.
 ![photo_2025-04-15_09-03-47](https://github.com/user-attachments/assets/7abfa746-8387-4467-8528-308e776c7bdb)
