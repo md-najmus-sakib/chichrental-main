@@ -22,8 +22,8 @@ https://github.com/user-attachments/assets/4da57fb4-6506-425b-9fdb-b9012ce783b9
 
 
 ## Project Report.
-Drive Link: https://drive.google.com/file/d/1JbnCFqOqwqXKU2BEIAjQhvUTQ1rUxP-K/view?usp=drive_link
-[ChicRental Project Report.pdf](https://github.com/user-attachments/files/19746709/ChicRental.Project.Report.pdf)
+Drive Link: https://drive.google.com/file/d/1XNkOKho5hx6faBbc9uAUaM0m5geDFmJ3/view?usp=sharing
+[ChicRental Flutter Project Report.pdf](https://github.com/user-attachments/files/19816196/ChicRental.Flutter.Project.Report.pdf)
 
 ## APK
 Drive Link: https://drive.google.com/drive/folders/1_s-IT1mC6EyGdjM7IQ0AWZFU98qjzxun?usp=sharing
